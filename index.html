@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./whether.css">
+    <script src="https://kit.fontawesome.com/78eba87afc.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Bree+Serif&family=Edu+NSW+ACT+Foundation&family=Ibarra+Real+Nova&family=Lobster&family=Lobster+Two&family=Lora:ital,wght@0,400;1,687;1,700&family=Pacifico&family=Roboto+Slab&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+<body class=""> 
+    <div class="d1 container border w-5 text-center">
+    <input  type="text" placeholder="City name" id="input">
+    <button type="button" onclick="search()" class=""><i class="fa fa-search"></i></button>
+    <div class="col-2 text-danger mt-5" id="result">
+
+    </div>
+
+  </div>
+
+<script>
+    function search() {
+        city = input.value
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=5b4bee0ba241d092159faf007e166080`)
+            .then(res => res.json())
+            .then(data => displaydata(data))
+    }
+    function displaydata(citydetails) {
+        cityname = citydetails.name
+        temperature = citydetails.main.temp
+        wheathertype = citydetails.weather[0].description
+        windspeed = citydetails.wind.speed
+        lattitude = citydetails.coord.lat
+        longitude = citydetails.coord.lon
+
+        htmldata = `<div class="whether"><p>city name: <span id="cityname">${cityname}</span></p></div>
+        <div class="whether"><p>Temperature: <span id="temp">${temperature}</span></p></div>
+       <div class="whether"><p>weather type: <span id="weather">${wheathertype}</span></p></div>
+        <div class="whether"><p>wind speed: <span id="wind">${windspeed}</span></p></div>
+       <div class="whether"><p>lattitude: <span id="latt">${lattitude}</span></p></div>
+        <div class="whether"><p>longitude: <span id="long">${longitude}</span></p></div>`
+
+        result.innerHTML = htmldata
+
+    }
+</script>
+</body>
+     
+
+</html>
