@@ -34,12 +34,12 @@
             .then(data => displaydata(data))
     }
     function displaydata(citydetails) {
-        cityname = citydetails.name
-        temperature = citydetails.main.temp
-        wheathertype = citydetails.weather[0].description
-        windspeed = citydetails.wind.speed
-        lattitude = citydetails.coord.lat
-        longitude = citydetails.coord.lon
+        cityname = james.name
+        temperature = james.main.temp
+        wheathertype = james.weather[0].description
+        windspeed = james.wind.speed
+        lattitude = james.coord.lat
+        longitude = james.coord.lon
 
         htmldata = `<div class="whether"><p>city name: <span id="cityname">${cityname}</span></p></div>
         <div class="whether"><p>Temperature: <span id="temp">${temperature}</span></p></div>
